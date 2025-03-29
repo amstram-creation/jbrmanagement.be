@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JBR Management | Gestion Immobilière à Bruxelles</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #34495e;
+            --accent: #3498db;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li         a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s, background-color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .institutions a:hover {
+            background-color: rgba(255,255,255,0.2);
+            color: white;
+        }
+        
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/800') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background-color: var(--accent);
+            bottom: 0;
+            left: 25%;
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-img {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        .service-content h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .about {
+            background-color: var(--light);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            height: 400px;
+            background-color: #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .about-text h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .team-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .team-img {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .team-content {
+            padding: 1.5rem;
+        }
+        
+        .team-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-content p {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .contact-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .contact-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .map {
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 3rem;
+            background-color: #ddd;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-links h3::after {
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background-color: var(--accent);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            nav ul li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">JBR <span>Management</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">À Propos</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="accueil" class="hero">
+        <div class="container hero-content">
+            <h1>Expert en Gestion de Copropriétés</h1>
+            <p>Fort de plus de 40 ans d'expérience en Belgique, en France et au Québec, Jean-Pierre Lannoy met son expertise au service de la prévention des conflits en copropriété et de la formation des professionnels du secteur immobilier.</p>
+            <a href="#contact" class="btn">Contactez-nous</a>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Services</h2>
+            </div>
+            <div class="services">
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="service-content">
+                        <h3>Gestion de Copropriétés</h3>
+                        <p>Administration professionnelle de copropriétés avec plus de 40 ans d'expérience. Nous développons des processus efficaces pour prévenir les conflits et assurer une gestion harmonieuse.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="service-content">
+                        <h3>Formations Immobilières</h3>
+                        <p>Formations spécialisées pour les professionnels de l'immobilier et les copropriétaires. Notre expertise est reconnue à travers la Belgique, la France et le Québec.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="service-content">
+                        <h3>Conseil Juridique</h3>
+                        <p>Accompagnement juridique spécialisé dans la résolution de conflits en copropriété. Jean-Pierre Lannoy assume plusieurs mandats de justice en tant qu'administrateur provisoire.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>À Propos de JBR Management</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-img" style="background-image: url('/api/placeholder/500/400');"></div>
+                <div class="about-text">
+                    <h3>Expertise Immobilière depuis plus de 40 ans</h3>
+                    <p>Jean-Pierre Lannoy a développé l'ensemble de son activité professionnelle à travers la copropriété que ce soit en Belgique, en France et au Québec. Auteur d'ouvrages, il a notamment abordé la nécessité de développer tous les processus utiles visant à prévenir les conflits en copropriété.</p>
+                    <p>Agent immobilier et administrateur provisoire par mandat de justice, il a été administrateur de plusieurs organismes importants du secteur immobilier, notamment l'<strong>Association Belge des Syndics et Administrateurs de biens (ABSA)</strong>, la <strong>Fédération des agents immobiliers francophones de Belgique (FEDERIA)</strong> ainsi que le <strong>Centre d'Étude et de Formations Immobilières (CEFIM)</strong> dont il assume la Présidence.</p>
+                    <p>Formateur auprès de nombreux organismes (CEFIM, FS 323, EFP IFAPME, HOMEGRADE, CIRE), conférencier et auteur d'articles sur les défis de la copropriété, il concentre aujourd'hui ses activités à la formation et à la digitalisation de parcours de formation dédiés au monde de l'immobilier.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team">
+        <div class="container">
+                            <div class="section-title">
+                <h2>Direction</h2>
+            </div>
+            <div class="team-members">
+                <div class="team-card">
+                    <div class="team-img" style="background-image: url('/api/placeholder/300/300');"></div>
+                    <div class="team-content">
+                        <h3>Jean-Pierre Lannoy</h3>
+                        <p>Gestionnaire de copropriété</p>
+                        <p>Président du Centre d'Études et de Formations du CEFIM</p>
+                        <div class="team-contact">
+                            <p>Email: lannoy@jbrmanagement.be</p>
+                            <p>Tél: +32 (475) 46.27.32</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Additional team members would be added here -->
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contactez-nous</h2>
+            </div>
+            
+            <!-- Direction information -->
+            <div class="team-profile" style="display: flex; margin-bottom: 3rem; background: white; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden;">
+                <div style="flex: 0 0 30%; max-width: 300px;">
+                    <img src="/api/placeholder/300/300" alt="Jean-Pierre Lannoy" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="flex: 1; padding: 2rem;">
+                    <h3 style="color: var(--primary); font-size: 1.8rem; margin-bottom: 0.5rem;">Jean-Pierre Lannoy</h3>
+                    <p style="font-weight: 500; margin-bottom: 0.5rem;">Gestionnaire de copropriété</p>
+                    <p style="font-weight: 500; margin-bottom: 1.5rem;">Président du Centre d'Études et de Formations du CEFIM</p>
+                    <p style="margin-bottom: 0.5rem;"><strong>Email:</strong> lannoy@jbrmanagement.be</p>
+                    <p style="margin-bottom: 0.5rem;"><strong>Tél:</strong> +32 (475) 46.27.32</p>
+                </div>
+            </div>
+            
+            <!-- Contact information -->
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>Adresse</h3>
+                    <p>Avenue de l'Aulne 62</p>
+                    <p>1180 Uccle</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3>Téléphone</h3>
+                    <p>Bureau: +32 (2) 646.14.58</p>
+                    <p>Mobile: +32 (475) 46.27.32</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email</h3>
+                    <p>lannoy@jbrmanagement.be</p>
+                </div>
+            </div>
+            
+            <div class="map">
+                <!-- Placeholder for a map -->
+                <img src="/api/placeholder/1200/400" alt="Map location" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">JBR Management</div>
+                    <p>Services professionnels de gestion immobilière, courtage et administration de copropriétés à Bruxelles.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Liens Rapides</h3>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">À Propos</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#services">Courtage Immobilier</a></li>
+                        <li><a href="#services">Gestion Syndic</a></li>
+                        <li><a href="#services">Gestion Locative</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p>Avenue de l'Aulne 62</p>
+                    <p>1180 Uccle</p>
+                    <p>Tél: +32 (2) 646.14.58</p>
+                    <p>Email: lannoy@jbrmanagement.be</p>
+                </div>
+            </div>
+            <div class="institutions">
+                <h3 style="text-align: center; margin-bottom: 1rem; color: #fff;">Institutions Partenaires</h3>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-bottom: 2rem;">
+                    <a href="https://www.absa.be" target="_blank" style="color: #bbb; text-decoration: none; background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s;">ABSA - Association Belge des Syndics et Administrateurs de biens</a>
+                    <a href="https://www.federia.be" target="_blank" style="color: #bbb; text-decoration: none; background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s;">FEDERIA - Fédération des agents immobiliers francophones de Belgique</a>
+                    <a href="https://www.cefim.be" target="_blank" style="color: #bbb; text-decoration: none; background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s;">CEFIM - Centre d'Étude et de Formations Immobilières</a>
+                    <a href="https://www.homegrade.brussels" target="_blank" style="color: #bbb; text-decoration: none; background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s;">HOMEGRADE</a>
+                    <a href="https://www.cire.be" target="_blank" style="color: #bbb; text-decoration: none; background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s;">CIRE</a>
+                    <a href="https://www.ifapme.be" target="_blank" style="color: #bbb; text-decoration: none; background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s;">IFAPME</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 JBR Management. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
