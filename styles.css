@@ -1,7 +1,7 @@
 :root {
     --primary: #2c3e50;
     --secondary: #34495e;
-    --accent: #3498db;
+    --accent: #2980b9;
     --light: #ecf0f1;
     --dark: #2c3e50;
 }
@@ -24,7 +24,7 @@ body {
     position: absolute;
     top: -40px;
     left: 0;
-    background: var(--accent);
+    background: var(--primary);
     color: white;
     padding: 8px 16px;
     z-index: 1000;
@@ -61,10 +61,6 @@ header {
     font-size: 1.4rem;
     font-weight: bold;
     letter-spacing: 1px;
-}
-
-.logo span {
-    color: var(--accent);
 }
 
 /* Mobile-first navigation */
@@ -149,7 +145,7 @@ header {
 }
 
 .lang-switcher button.active {
-    background-color: var(--accent);
+    background-color: var(--primary);
     border-color: var(--accent);
 }
 
@@ -179,7 +175,7 @@ header {
 
 .btn {
     display: inline-block;
-    background-color: var(--accent);
+    background-color: var(--primary);
     color: white;
     padding: 0.8rem 1.5rem;
     border-radius: 4px;
@@ -455,7 +451,7 @@ footer {
 }
 
 .institutions-list a {
-    color: #bbb;
+    color: #EEE;
     text-decoration: none;
     background-color: rgba(255, 255, 255, 0.1);
     padding: 0.5rem 1rem;
