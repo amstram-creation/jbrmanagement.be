@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="256" fill="#ffffff"/>
+  
+  <!-- Building - Centered in the 512x512 canvas -->
+  <path d="M156 356 L156 196 L256 146 L356 196 L356 356 Z" fill="#3a5a78" />
+  
+  <!-- Windows -->
+  <rect x="186" y="216" width="40" height="40" rx="3" fill="#e8f0f7" />
+  <rect x="286" y="216" width="40" height="40" rx="3" fill="#e8f0f7" />
+  <rect x="186" y="276" width="40" height="40" rx="3" fill="#e8f0f7" />
+  <rect x="286" y="276" width="40" height="40" rx="3" fill="#e8f0f7" />
+  
+  <!-- Door -->
+  <rect x="236" y="316" width="40" height="40" rx="3" fill="#d3965b" />
+  <circle cx="266" cy="336" r="5" fill="#3a5a78" />
+  
+  <!-- Text element - JBR -->
+  <text x="256" y="430" font-family="Arial, sans-serif" font-weight="bold" font-size="60" fill="#3a5a78" text-anchor="middle">JBR</text>
+</svg>
