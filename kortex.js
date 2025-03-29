@@ -203,5 +203,5 @@ class Kortex {
 
 // Usage
 document.addEventListener('DOMContentLoaded', () => {
-  const Kortex = new Kortex();
+  new Kortex();
 });
