@@ -5,590 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JBR Management | Gestion Immobilière à Bruxelles</title>
-    <style>
-        :root {
-            --primary: #2c3e50;
-            --secondary: #34495e;
-            --accent: #3498db;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Helvetica', 'Arial', sans-serif;
-        }
-
-        body {
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
-        }
-
-        /* Skip Link */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--accent);
-            color: white;
-            padding: 8px 16px;
-            z-index: 1000;
-            transition: top 0.3s;
-        }
-
-        .skip-link:focus {
-            top: 0;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        .logo span {
-            color: var(--accent);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s, background-color 0.3s;
-        }
-
-        nav ul li a:hover,
-        nav ul li a:focus {
-            color: var(--accent);
-        }
-
-        .institutions a:hover,
-        .institutions a:focus {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        .hero {
-            height: 70vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/800') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            color: white;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover,
-        .btn:focus {
-            background-color: #2980b9;
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            position: relative;
-            display: inline-block;
-            padding-bottom: 1rem;
-        }
-
-        .section-title h2::after {
-            content: "";
-            position: absolute;
-            width: 50%;
-            height: 3px;
-            background-color: var(--accent);
-            bottom: 0;
-            left: 25%;
-        }
-
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .service-card:hover,
-        .service-card:focus-within {
-            transform: translateY(-10px);
-        }
-
-        .service-img {
-            height: 200px;
-            background-color: #ddd;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .service-content {
-            padding: 1.5rem;
-        }
-
-        .service-content h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .about {
-            background-color: var(--light);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            height: 400px;
-            background-color: #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .about-text h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .contact-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .contact-icon {
-            width: 60px;
-            height: 60px;
-            background-color: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .contact-card h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .map {
-            height: 400px;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-top: 3rem;
-            background-color: #ddd;
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 0.5rem;
-        }
-
-        .footer-links h3::after {
-            content: "";
-            position: absolute;
-            width: 50%;
-            height: 2px;
-            background-color: var(--accent);
-            bottom: 0;
-            left: 0;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links ul li a {
-            color: #bbb;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links ul li a:hover,
-        .footer-links ul li a:focus {
-            color: white;
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Unified Navigation */
-        .menu-toggle {
-            background: transparent;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            margin-left: auto;
-            color: white;
-        }
-
-        .main-nav ul {
-            display: flex;
-            list-style: none;
-            align-items: center;
-        }
-
-        .main-nav ul li {
-            margin-left: 2rem;
-        }
-
-        .main-nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s, background-color 0.3s;
-        }
-
-        .main-nav ul li a:hover,
-        .main-nav ul li a:focus {
-            color: var(--accent);
-        }
-
-        .lang-item {
-            margin-left: 2rem;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 10% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 80%;
-            max-width: 600px;
-            animation: modalFade 0.3s;
-            outline: none;
-        }
-
-        @keyframes modalFade {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .close-modal {
-            background: transparent;
-            border: none;
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            float: right;
-        }
-
-        .close-modal:hover,
-        .close-modal:focus {
-            color: var(--primary);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        .form-control:focus {
-            border-color: var(--accent);
-            outline: none;
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        /* Language Switcher */
-        .lang-switcher {
-            display: flex;
-            align-items: center;
-            margin-left: 2rem;
-        }
-
-        .lang-switcher button {
-            background: transparent;
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-
-        .lang-switcher button:hover,
-        .lang-switcher button:focus {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .lang-switcher button.active {
-            background-color: var(--accent);
-            border-color: var(--accent);
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .header-content {
-                padding: 1rem;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .main-nav {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease-out;
-            }
-
-            .main-nav.show {
-                max-height: 500px;
-            }
-
-            .main-nav ul {
-                flex-direction: column;
-                padding: 1rem 0;
-            }
-
-            .main-nav ul li {
-                margin: 0;
-                text-align: center;
-                padding: 0.8rem 0;
-                width: 100%;
-            }
-
-            .lang-item {
-                margin-left: 0;
-                margin-top: 0.5rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .lang-switcher {
-                justify-content: center;
-            }
-        }
-
-        /* Toast Notification */
-        .toast {
-            visibility: hidden;
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #333;
-            color: white;
-            padding: 16px;
-            border-radius: 4px;
-            z-index: 1000;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .toast.show {
-            visibility: visible;
-            animation: fadeIn 0.5s, fadeOut 0.5s 2.5s;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                bottom: 0;
-            }
-
-            to {
-                opacity: 1;
-                bottom: 30px;
-            }
-        }
-
-        @keyframes fadeOut {
-            from {
-                opacity: 1;
-                bottom: 30px;
-            }
-
-            to {
-                opacity: 0;
-                bottom: 0;
-            }
-        }
-
-        /* Focus Outline for all interactive elements */
-        a:focus,
-        button:focus,
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -641,7 +58,7 @@
             </div>
             <div class="services">
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('/api/placeholder/400/200');"
+                    <div class="service-img" style="background-image: url('https://placehold.co/400x200');"
                         aria-hidden="true"></div>
                     <div class="service-content">
                         <h3>Gestion de Copropriétés</h3>
@@ -651,7 +68,7 @@
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('/api/placeholder/400/200');"
+                    <div class="service-img" style="background-image: url('https://placehold.co/400x200');"
                         aria-hidden="true"></div>
                     <div class="service-content">
                         <h3>Formations Immobilières</h3>
@@ -661,7 +78,7 @@
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('/api/placeholder/400/200');"
+                    <div class="service-img" style="background-image: url('https://placehold.co/400x200');"
                         aria-hidden="true"></div>
                     <div class="service-content">
                         <h3>Conseil Juridique</h3>
@@ -680,7 +97,7 @@
                 <h2>À Propos de JBR Management</h2>
             </div>
             <div class="about-content">
-                <div class="about-img" style="background-image: url('/api/placeholder/500/400');" aria-hidden="true">
+                <div class="about-img" style="background-image: url('https://placehold.co/500x400');" aria-hidden="true">
                 </div>
                 <div class="about-text">
                     <h3>Expertise Immobilière depuis plus de 40 ans</h3>
@@ -715,20 +132,16 @@
             </div>
 
             <!-- Direction information -->
-            <div class="team-profile"
-                style="display: flex; margin-bottom: 3rem; background: white; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden;">
-                <div style="flex: 0 0 30%; max-width: 300px;">
-                    <img src="/api/placeholder/300/400" alt="Jean-Pierre Lannoy"
-                        style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="team-profile">
+                <div class="team-profile-img">
+                    <img src="Jean-Pierre_Lannoy.jpg" alt="Jean-Pierre Lannoy">
                 </div>
-                <div style="flex: 1; padding: 2rem;">
-                    <h3 style="color: var(--primary); font-size: 1.8rem; margin-bottom: 0.5rem;">Jean-Pierre Lannoy
-                    </h3>
-                    <p style="font-weight: 500; margin-bottom: 0.5rem;">Gestionnaire de copropriété</p>
-                    <p style="font-weight: 500; margin-bottom: 1.5rem;">Président du Centre d'Études et de
-                        Formations du CEFIM</p>
-                    <p style="margin-bottom: 0.5rem;"><strong>Email:</strong> lannoy@jbrmanagement.be</p>
-                    <p style="margin-bottom: 0.5rem;"><strong>Tél:</strong> +32 (475) 46.27.32</p>
+                <div class="team-profile-content">
+                    <h3>Jean-Pierre Lannoy</h3>
+                    <p class="title">Gestionnaire de copropriété</p>
+                    <p class="subtitle">Président du Centre d'Études et de Formations du CEFIM</p>
+                    <p class="contact-info"><strong>Email:</strong> lannoy@jbrmanagement.be</p>
+                    <p class="contact-info"><strong>Tél:</strong> +32 (475) 46.27.32</p>
                 </div>
             </div>
 
@@ -750,15 +163,14 @@
                     <div class="contact-icon">✉️</div>
                     <h3>Email</h3>
                     <p>lannoy@jbrmanagement.be</p>
-                    <a href="#" id="footer-contact-btn" class="btn" style="margin-top: 1rem;">Nous Contacter</a>
+                    <a href="#" id="footer-contact-btn" class="btn footer-btn">Nous Contacter</a>
                 </div>
             </div>
 
             <div class="map">
                 <iframe title="Localisation: Avenue de l'Aulne 62, 1180 Uccle, Belgium"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2521.3190456400934!2d4.3694594!3d50.8058722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c43bfd64abc5%3A0xba1b812a80a85b4c!2sAv.%20de%20l&#39;Aulne%2062%2C%201180%20Uccle%2C%20Belgium!5e0!3m2!1sen!2sus!4v1648553969367!5m2!1sen!2sus"
-                    width="100%" height="400" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
         </div>
@@ -798,23 +210,17 @@
                 </div>
             </div>
             <div class="institutions">
-                <h3 style="text-align: center; margin-bottom: 1rem; color: #fff;">Institutions Partenaires</h3>
-                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-bottom: 2rem;">
-                    <a href="https://www.absa.be" target="_blank" rel="noopener noreferrer"
-                        style="color: #bbb; text-decoration: none; background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s;">ABSA
+                <h3>Institutions Partenaires</h3>
+                <div class="institutions-list">
+                    <a href="https://www.absa.be" target="_blank" rel="noopener noreferrer">ABSA
                         - Association Belge des Syndics et Administrateurs de biens</a>
-                    <a href="https://www.federia.be" target="_blank" rel="noopener noreferrer"
-                        style="color: #bbb; text-decoration: none; background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s;">FEDERIA
+                    <a href="https://www.federia.be" target="_blank" rel="noopener noreferrer">FEDERIA
                         - Fédération des agents immobiliers francophones de Belgique</a>
-                    <a href="https://www.cefim.be" target="_blank" rel="noopener noreferrer"
-                        style="color: #bbb; text-decoration: none; background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s;">CEFIM
+                    <a href="https://www.cefim.be" target="_blank" rel="noopener noreferrer">CEFIM
                         - Centre d'Étude et de Formations Immobilières</a>
-                    <a href="https://www.homegrade.brussels" target="_blank" rel="noopener noreferrer"
-                        style="color: #bbb; text-decoration: none; background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s;">HOMEGRADE</a>
-                    <a href="https://www.cire.be" target="_blank" rel="noopener noreferrer"
-                        style="color: #bbb; text-decoration: none; background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s;">CIRE</a>
-                    <a href="https://www.ifapme.be" target="_blank" rel="noopener noreferrer"
-                        style="color: #bbb; text-decoration: none; background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s;">IFAPME</a>
+                    <a href="https://www.homegrade.brussels" target="_blank" rel="noopener noreferrer">HOMEGRADE</a>
+                    <a href="https://www.cire.be" target="_blank" rel="noopener noreferrer">CIRE</a>
+                    <a href="https://www.ifapme.be" target="_blank" rel="noopener noreferrer">IFAPME</a>
                 </div>
             </div>
             <div class="copyright">
@@ -827,7 +233,7 @@
     <div id="contact-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
         <div class="modal-content" tabindex="-1">
             <button class="close-modal" aria-label="Close modal">&times;</button>
-            <h2 id="contact-modal-title" style="color: var(--primary); margin-bottom: 1.5rem;">Contactez-nous</h2>
+            <h2 id="contact-modal-title" class="modal-title">Contactez-nous</h2>
             <form id="contact-form">
                 <div class="form-group">
                     <label for="name">Nom</label>
@@ -861,131 +267,7 @@
     <!-- Toast Notification -->
     <div id="toast" class="toast" role="alert">Votre message a été envoyé avec succès!</div>
 
-    <script>
-        // Mobile Menu Toggle
-        const menuToggle = document.querySelector('.menu-toggle');
-        const mainNav = document.querySelector('.main-nav');
-
-        menuToggle.addEventListener('click', () => {
-            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-            menuToggle.setAttribute('aria-expanded', !expanded);
-            mainNav.classList.toggle('show');
-        });
-
-        // Modal Functionality
-        const modal = document.getElementById('contact-modal');
-        const contactBtns = document.querySelectorAll('#contact-btn, #hero-contact-btn, #footer-contact-btn');
-        const closeModal = document.querySelector('.close-modal');
-        const contactForm = document.getElementById('contact-form');
-        const toast = document.getElementById('toast');
-        let lastFocusedElement;
-
-        contactBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                lastFocusedElement = document.activeElement;
-                modal.style.display = 'block';
-                // Set focus to the modal content for accessibility
-                modal.querySelector('.modal-content').focus();
-            });
-        });
-
-        const closeTheModal = () => {
-            modal.style.display = 'none';
-            if (lastFocusedElement) {
-                lastFocusedElement.focus();
-            }
-        };
-
-        closeModal.addEventListener('click', closeTheModal);
-
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeTheModal();
-            }
-        });
-
-        // Close modal on Escape key press
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.style.display === 'block') {
-                closeTheModal();
-            }
-        });
-
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            // Here you would typically process the form data with AJAX
-            // For this demo, we'll just show a success message
-
-            // Reset form
-            contactForm.reset();
-
-            // Hide modal
-            modal.style.display = 'none';
-
-            // Show toast notification
-            toast.className = "toast show";
-
-            // Hide toast after 3 seconds
-            setTimeout(() => {
-                toast.className = toast.className.replace("show", "");
-            }, 3000);
-        });
-
-        // Language Switcher
-        const langBtns = document.querySelectorAll('.lang-switcher button');
-
-        langBtns.forEach(btn => {
-            btn.addEventListener('click', function () {
-                // Remove active class from all buttons
-                langBtns.forEach(b => b.classList.remove('active'));
-
-                // Add active class to clicked button
-                this.classList.add('active');
-
-                // Here you would typically implement language switching functionality
-                const lang = this.getAttribute('data-lang');
-                console.log(`Switching to ${lang} language`);
-
-                // For demonstration, show toast with language change message
-                toast.textContent = `Langue changée en ${lang === 'fr' ? 'Français' : lang === 'en' ? 'Anglais' : 'Néerlandais'}`;
-                toast.className = "toast show";
-
-                setTimeout(() => {
-                    toast.className = toast.className.replace("show", "");
-                }, 3000);
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                // Skip if it's a modal trigger
-                if (this.id === 'contact-btn' || this.id === 'hero-contact-btn' ||
-                    this.id === 'footer-contact-btn') {
-                    return;
-                }
-
-                e.preventDefault();
-
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-
-                    // Close mobile menu if open
-                    mainNav.classList.remove('show');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
