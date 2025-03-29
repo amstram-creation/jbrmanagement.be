@@ -27,6 +27,22 @@
             background-color: #f8f9fa;
         }
 
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--accent);
+            color: white;
+            padding: 8px 16px;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
         .container {
             width: 90%;
             max-width: 1200px;
@@ -75,11 +91,13 @@
             transition: color 0.3s, background-color 0.3s;
         }
 
-        nav ul li a:hover {
+        nav ul li a:hover,
+        nav ul li a:focus {
             color: var(--accent);
         }
 
-        .institutions a:hover {
+        .institutions a:hover,
+        .institutions a:focus {
             background-color: rgba(255, 255, 255, 0.2);
             color: white;
         }
@@ -117,9 +135,12 @@
             text-decoration: none;
             font-weight: bold;
             transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
         }
 
-        .btn:hover {
+        .btn:hover,
+        .btn:focus {
             background-color: #2980b9;
         }
 
@@ -164,7 +185,8 @@
             transition: transform 0.3s;
         }
 
-        .service-card:hover {
+        .service-card:hover,
+        .service-card:focus-within {
             transform: translateY(-10px);
         }
 
@@ -303,7 +325,8 @@
             transition: color 0.3s;
         }
 
-        .footer-links ul li a:hover {
+        .footer-links ul li a:hover,
+        .footer-links ul li a:focus {
             color: white;
         }
 
@@ -315,10 +338,12 @@
 
         /* Unified Navigation */
         .menu-toggle {
-            display: none;
-            cursor: pointer;
+            background: transparent;
+            border: none;
             font-size: 1.5rem;
+            cursor: pointer;
             margin-left: auto;
+            color: white;
         }
 
         .main-nav ul {
@@ -338,7 +363,8 @@
             transition: color 0.3s, background-color 0.3s;
         }
 
-        .main-nav ul li a:hover {
+        .main-nav ul li a:hover,
+        .main-nav ul li a:focus {
             color: var(--accent);
         }
 
@@ -367,6 +393,7 @@
             width: 80%;
             max-width: 600px;
             animation: modalFade 0.3s;
+            outline: none;
         }
 
         @keyframes modalFade {
@@ -382,14 +409,17 @@
         }
 
         .close-modal {
+            background: transparent;
+            border: none;
             color: #aaa;
-            float: right;
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
+            float: right;
         }
 
-        .close-modal:hover {
+        .close-modal:hover,
+        .close-modal:focus {
             color: var(--primary);
         }
 
@@ -439,7 +469,8 @@
             transition: all 0.3s;
         }
 
-        .lang-switcher button:hover {
+        .lang-switcher button:hover,
+        .lang-switcher button:focus {
             background-color: rgba(255, 255, 255, 0.1);
         }
 
@@ -547,18 +578,31 @@
                 bottom: 0;
             }
         }
+
+        /* Focus Outline for all interactive elements */
+        a:focus,
+        button:focus,
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
     </style>
 </head>
 
 <body>
+    <!-- Skip to Content Link -->
+    <a href="#accueil" class="skip-link">Passer au contenu</a>
+
     <header>
         <div class="container header-content">
             <div class="logo">JBR <span>Management</span></div>
 
-            <!-- Single Navigation Structure -->
-            <div class="menu-toggle">
-                <i>☰</i>
-            </div>
+            <!-- Mobile Menu Toggle as a Button -->
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                ☰
+            </button>
 
             <nav class="main-nav">
                 <ul>
@@ -583,8 +627,9 @@
         <div class="container hero-content">
             <h1>Expert en Gestion de Copropriétés</h1>
             <p>Fort de plus de 40 ans d'expérience en Belgique, en France et au Québec, Jean-Pierre Lannoy met son
-                expertise au service de la prévention des conflits en copropriété et de la formation des professionnels
-                du secteur immobilier.</p>
+                expertise au service de la prévention des conflits en copropriété et de la formation des
+                professionnels du
+                secteur immobilier.</p>
             <a href="#" id="hero-contact-btn" class="btn">Demander un Devis</a>
         </div>
     </section>
@@ -596,29 +641,33 @@
             </div>
             <div class="services">
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="service-img" style="background-image: url('/api/placeholder/400/200');"
+                        aria-hidden="true"></div>
                     <div class="service-content">
                         <h3>Gestion de Copropriétés</h3>
                         <p>Administration professionnelle de copropriétés avec plus de 40 ans d'expérience. Nous
-                            développons des processus efficaces pour prévenir les conflits et assurer une gestion
-                            harmonieuse.</p>
+                            développons des
+                            processus efficaces pour prévenir les conflits et assurer une gestion harmonieuse.</p>
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="service-img" style="background-image: url('/api/placeholder/400/200');"
+                        aria-hidden="true"></div>
                     <div class="service-content">
                         <h3>Formations Immobilières</h3>
-                        <p>Formations spécialisées pour les professionnels de l'immobilier et les copropriétaires. Notre
-                            expertise est reconnue à travers la Belgique, la France et le Québec.</p>
+                        <p>Formations spécialisées pour les professionnels de l'immobilier et les copropriétaires.
+                            Notre expertise est
+                            reconnue à travers la Belgique, la France et le Québec.</p>
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('/api/placeholder/400/200');"></div>
+                    <div class="service-img" style="background-image: url('/api/placeholder/400/200');"
+                        aria-hidden="true"></div>
                     <div class="service-content">
                         <h3>Conseil Juridique</h3>
                         <p>Accompagnement juridique spécialisé dans la résolution de conflits en copropriété.
-                            Jean-Pierre Lannoy assume plusieurs mandats de justice en tant qu'administrateur provisoire.
-                        </p>
+                            Jean-Pierre Lannoy assume
+                            plusieurs mandats de justice en tant qu'administrateur provisoire.</p>
                     </div>
                 </div>
             </div>
@@ -631,22 +680,29 @@
                 <h2>À Propos de JBR Management</h2>
             </div>
             <div class="about-content">
-                <div class="about-img" style="background-image: url('/api/placeholder/500/400');"></div>
+                <div class="about-img" style="background-image: url('/api/placeholder/500/400');" aria-hidden="true">
+                </div>
                 <div class="about-text">
                     <h3>Expertise Immobilière depuis plus de 40 ans</h3>
                     <p>Jean-Pierre Lannoy a développé l'ensemble de son activité professionnelle à travers la
-                        copropriété que ce soit en Belgique, en France et au Québec. Auteur d'ouvrages, il a notamment
-                        abordé la nécessité de développer tous les processus utiles visant à prévenir les conflits en
-                        copropriété.</p>
-                    <p>Agent immobilier et administrateur provisoire par mandat de justice, il a été administrateur de
-                        plusieurs organismes importants du secteur immobilier, notamment l'<strong>Association Belge des
-                            Syndics et Administrateurs de biens (ABSA)</strong>, la <strong>Fédération des agents
-                            immobiliers francophones de Belgique (FEDERIA)</strong> ainsi que le <strong>Centre d'Étude
-                            et de Formations Immobilières (CEFIM)</strong> dont il assume la Présidence.</p>
+                        copropriété que ce
+                        soit en Belgique, en France et au Québec. Auteur d'ouvrages, il a notamment abordé la
+                        nécessité de développer
+                        tous les processus utiles visant à prévenir les conflits en copropriété.</p>
+                    <p>Agent immobilier et administrateur provisoire par mandat de justice, il a été administrateur
+                        de plusieurs
+                        organismes importants du secteur immobilier, notamment l'<strong>Association Belge des
+                            Syndics et Administrateurs
+                            de biens (ABSA)</strong>, la <strong>Fédération des agents immobiliers francophones de
+                            Belgique (FEDERIA)</strong>
+                        ainsi que le <strong>Centre d'Étude et de Formations Immobilières (CEFIM)</strong> dont il
+                        assume la Présidence.
+                    </p>
                     <p>Formateur auprès de nombreux organismes (CEFIM, FS 323, EFP IFAPME, HOMEGRADE, CIRE),
-                        conférencier et auteur d'articles sur les défis de la copropriété, il concentre aujourd'hui ses
-                        activités à la formation et à la digitalisation de parcours de formation dédiés au monde de
-                        l'immobilier.</p>
+                        conférencier et
+                        auteur d'articles sur les défis de la copropriété, il concentre aujourd'hui ses activités à
+                        la formation et à la
+                        digitalisation de parcours de formation dédiés au monde de l'immobilier.</p>
                 </div>
             </div>
         </div>
@@ -666,10 +722,11 @@
                         style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div style="flex: 1; padding: 2rem;">
-                    <h3 style="color: var(--primary); font-size: 1.8rem; margin-bottom: 0.5rem;">Jean-Pierre Lannoy</h3>
+                    <h3 style="color: var(--primary); font-size: 1.8rem; margin-bottom: 0.5rem;">Jean-Pierre Lannoy
+                    </h3>
                     <p style="font-weight: 500; margin-bottom: 0.5rem;">Gestionnaire de copropriété</p>
-                    <p style="font-weight: 500; margin-bottom: 1.5rem;">Président du Centre d'Études et de Formations du
-                        CEFIM</p>
+                    <p style="font-weight: 500; margin-bottom: 1.5rem;">Président du Centre d'Études et de
+                        Formations du CEFIM</p>
                     <p style="margin-bottom: 0.5rem;"><strong>Email:</strong> lannoy@jbrmanagement.be</p>
                     <p style="margin-bottom: 0.5rem;"><strong>Tél:</strong> +32 (475) 46.27.32</p>
                 </div>
@@ -698,7 +755,7 @@
             </div>
 
             <div class="map">
-                <iframe
+                <iframe title="Localisation: Avenue de l'Aulne 62, 1180 Uccle, Belgium"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2521.3190456400934!2d4.3694594!3d50.8058722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c43bfd64abc5%3A0xba1b812a80a85b4c!2sAv.%20de%20l&#39;Aulne%2062%2C%201180%20Uccle%2C%20Belgium!5e0!3m2!1sen!2sus!4v1648553969367!5m2!1sen!2sus"
                     width="100%" height="400" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
@@ -743,20 +800,20 @@
             <div class="institutions">
                 <h3 style="text-align: center; margin-bottom: 1rem; color: #fff;">Institutions Partenaires</h3>
                 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-bottom: 2rem;">
-                    <a href="https://www.absa.be" target="_blank"
+                    <a href="https://www.absa.be" target="_blank" rel="noopener noreferrer"
                         style="color: #bbb; text-decoration: none; background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s;">ABSA
                         - Association Belge des Syndics et Administrateurs de biens</a>
-                    <a href="https://www.federia.be" target="_blank"
+                    <a href="https://www.federia.be" target="_blank" rel="noopener noreferrer"
                         style="color: #bbb; text-decoration: none; background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s;">FEDERIA
                         - Fédération des agents immobiliers francophones de Belgique</a>
-                    <a href="https://www.cefim.be" target="_blank"
+                    <a href="https://www.cefim.be" target="_blank" rel="noopener noreferrer"
                         style="color: #bbb; text-decoration: none; background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s;">CEFIM
                         - Centre d'Étude et de Formations Immobilières</a>
-                    <a href="https://www.homegrade.brussels" target="_blank"
+                    <a href="https://www.homegrade.brussels" target="_blank" rel="noopener noreferrer"
                         style="color: #bbb; text-decoration: none; background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s;">HOMEGRADE</a>
-                    <a href="https://www.cire.be" target="_blank"
+                    <a href="https://www.cire.be" target="_blank" rel="noopener noreferrer"
                         style="color: #bbb; text-decoration: none; background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s;">CIRE</a>
-                    <a href="https://www.ifapme.be" target="_blank"
+                    <a href="https://www.ifapme.be" target="_blank" rel="noopener noreferrer"
                         style="color: #bbb; text-decoration: none; background-color: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s;">IFAPME</a>
                 </div>
             </div>
@@ -767,10 +824,10 @@
     </footer>
 
     <!-- Contact Modal -->
-    <div id="contact-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 style="color: var(--primary); margin-bottom: 1.5rem;">Contactez-nous</h2>
+    <div id="contact-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+        <div class="modal-content" tabindex="-1">
+            <button class="close-modal" aria-label="Close modal">&times;</button>
+            <h2 id="contact-modal-title" style="color: var(--primary); margin-bottom: 1.5rem;">Contactez-nous</h2>
             <form id="contact-form">
                 <div class="form-group">
                     <label for="name">Nom</label>
@@ -796,13 +853,13 @@
                     <label for="message">Message</label>
                     <textarea class="form-control" id="message" required></textarea>
                 </div>
-                <button type="submit" class="btn" style="border: none; cursor: pointer;">Envoyer</button>
+                <button type="submit" class="btn">Envoyer</button>
             </form>
         </div>
     </div>
 
     <!-- Toast Notification -->
-    <div id="toast" class="toast">Votre message a été envoyé avec succès!</div>
+    <div id="toast" class="toast" role="alert">Votre message a été envoyé avec succès!</div>
 
     <script>
         // Mobile Menu Toggle
@@ -810,6 +867,8 @@
         const mainNav = document.querySelector('.main-nav');
 
         menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
             mainNav.classList.toggle('show');
         });
 
@@ -819,21 +878,37 @@
         const closeModal = document.querySelector('.close-modal');
         const contactForm = document.getElementById('contact-form');
         const toast = document.getElementById('toast');
+        let lastFocusedElement;
 
         contactBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
+                lastFocusedElement = document.activeElement;
                 modal.style.display = 'block';
+                // Set focus to the modal content for accessibility
+                modal.querySelector('.modal-content').focus();
             });
         });
 
-        closeModal.addEventListener('click', () => {
+        const closeTheModal = () => {
             modal.style.display = 'none';
-        });
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
+        };
+
+        closeModal.addEventListener('click', closeTheModal);
 
         window.addEventListener('click', (e) => {
             if (e.target === modal) {
-                modal.style.display = 'none';
+                closeTheModal();
+            }
+        });
+
+        // Close modal on Escape key press
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                closeTheModal();
             }
         });
 
@@ -870,7 +945,6 @@
                 this.classList.add('active');
 
                 // Here you would typically implement language switching functionality
-                // This would involve loading different language resources and updating the UI
                 const lang = this.getAttribute('data-lang');
                 console.log(`Switching to ${lang} language`);
 
@@ -907,9 +981,11 @@
 
                     // Close mobile menu if open
                     mainNav.classList.remove('show');
+                    menuToggle.setAttribute('aria-expanded', 'false');
                 }
             });
         });
     </script>
 </body>
+
 </html>
